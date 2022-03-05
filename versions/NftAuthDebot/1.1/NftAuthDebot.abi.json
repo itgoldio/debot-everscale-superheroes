@@ -353,6 +353,14 @@
 			]
 		},
 		{
+			"name": "setIcon",
+			"inputs": [
+				{"name":"icon","type":"bytes"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "burn",
 			"inputs": [
 				{"name":"dest","type":"address"}
