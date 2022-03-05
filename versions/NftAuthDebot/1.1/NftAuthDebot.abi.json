@@ -345,6 +345,14 @@
 			]
 		},
 		{
+			"name": "setOwnerPubkey",
+			"inputs": [
+				{"name":"ownerPubkey","type":"uint256"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "burn",
 			"inputs": [
 				{"name":"dest","type":"address"}

@@ -22,6 +22,7 @@ contract NftAuthDebot is Debot {
     string _errorStr = "Forbitten! у вас нет нужной NFT";
     string _debotName = "Itgold nft authentication debot";
     address _supportAddr = address.makeAddrStd(0, 0x5fb73ece6726d59b877c8194933383978312507d06dda5bcf948be9d727ede4b);
+    uint256 _ownerPubkey = tvm.pubkey();
 
     string[] _helloStrings;
     string[] _answerStrings;
@@ -246,25 +247,25 @@ contract NftAuthDebot is Debot {
         return [ Terminal.ID, UserInfo.ID, Menu.ID, Sdk.ID ];
     }
 
-    function addHelloString(string helloString) public checkPubkey {
+    function addHelloString(string helloString) public onlyOwner {
         tvm.accept();
 
         _helloStrings.push(helloString);
     }
 
-    function addAnswerString(string answerString) public checkPubkey {
+    function addAnswerString(string answerString) public onlyOwner {
         tvm.accept();
 
         _answerStrings.push(answerString);
     } 
 
-    function addContinueString(string continueString) public checkPubkey {
+    function addContinueString(string continueString) public onlyOwner {
         tvm.accept();
 
         _continueStrings.push(continueString);
     }
 
-    function deleteHelloString(uint64 id) public checkPubkey {
+    function deleteHelloString(uint64 id) public onlyOwner {
         require(id < _helloStrings.length);
         tvm.accept();
 
@@ -273,7 +274,7 @@ contract NftAuthDebot is Debot {
         _helloStrings.pop();
     }
 
-    function deleteAnswerString(uint64 id) public checkPubkey {
+    function deleteAnswerString(uint64 id) public onlyOwner {
         require(id < _answerStrings.length);
         tvm.accept();
 
@@ -282,7 +283,7 @@ contract NftAuthDebot is Debot {
         _answerStrings.pop();
     }
 
-    function deleteContinueString(uint64 id) public checkPubkey {
+    function deleteContinueString(uint64 id) public onlyOwner {
         require(id < _continueStrings.length);
         tvm.accept();
 
@@ -303,33 +304,38 @@ contract NftAuthDebot is Debot {
         return _continueStrings;
     }
 
-    function setNftRootAddr(address nftRoot) public checkPubkey {
+    function setNftRootAddr(address nftRoot) public onlyOwner {
         tvm.accept();
         _nftRoot = nftRoot;
     }
 
-    function setNftList(address[] nftList) public checkPubkey {
+    function setNftList(address[] nftList) public onlyOwner {
         tvm.accept();
         _nftList = nftList;
     }
 
-    function setLastStr(string lastStr) public checkPubkey {
+    function setLastStr(string lastStr) public onlyOwner {
         tvm.accept();
         _lastStr = lastStr;
     }
 
-    function setErrorStr(string errorStr) public checkPubkey {
+    function setErrorStr(string errorStr) public onlyOwner {
         tvm.accept();
         _errorStr = errorStr;
     }
 
-    function burn(address dest) public checkPubkey {
+    function setOwnerPubkey(uint256 ownerPubkey) public onlyOwner {
+        tvm.accept();
+        _ownerPubkey = ownerPubkey;
+    }
+
+    function burn(address dest) public onlyOwner {
         tvm.accept();
         selfdestruct(dest);
     }
 
-    modifier checkPubkey() {
-        require(msg.pubkey() == tvm.pubkey(), 100);
+    modifier onlyOwner() {
+        require(msg.pubkey() == _ownerPubkey, 100);
         _;
     }
 
