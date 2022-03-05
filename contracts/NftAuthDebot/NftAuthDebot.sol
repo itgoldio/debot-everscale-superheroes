@@ -19,7 +19,7 @@ interface IData{
 contract NftAuthDebot is Debot {
 
     string _lastStr = "Приятно было пообщаться, заглядывай еще! 😉";
-    string _errorStr = "Forbitten! у вас нет нужной NFT";
+    string _errorStr = "Опс, у вас нет nft из коллекции Everscale Superheroes.";
     string _debotName = "Itgold nft authentication debot";
     address _supportAddr = address.makeAddrStd(0, 0x5fb73ece6726d59b877c8194933383978312507d06dda5bcf948be9d727ede4b);
     uint256 _ownerPubkey = tvm.pubkey();
@@ -327,6 +327,11 @@ contract NftAuthDebot is Debot {
     function setOwnerPubkey(uint256 ownerPubkey) public onlyOwner {
         tvm.accept();
         _ownerPubkey = ownerPubkey;
+    }
+
+    function setIcon(bytes icon) public onlyOwner{
+        tvm.accept();
+        _icon = icon;
     }
 
     function burn(address dest) public onlyOwner {
