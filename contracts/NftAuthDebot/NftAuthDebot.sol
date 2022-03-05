@@ -20,7 +20,8 @@ contract NftAuthDebot is Debot {
 
     string _lastStr = "Приятно было пообщаться, заглядывай еще! 😉";
     string _errorStr = "Опс, у вас нет nft из коллекции Everscale Superheroes.";
-    string _debotName = "Itgold nft authentication debot";
+    string _helloStr = "Everscale Superheroes";
+    string _debotName = "Everscale Superheroes";
     address _supportAddr = address.makeAddrStd(0, 0x5fb73ece6726d59b877c8194933383978312507d06dda5bcf948be9d727ede4b);
     uint256 _ownerPubkey = tvm.pubkey();
 
@@ -232,12 +233,12 @@ contract NftAuthDebot is Debot {
         address support, string hello, string language, string dabi, bytes icon
     ) {
         name = _debotName;
-        version = "1.0";
+        version = "1.1";
         publisher = "https://itgold.io/";
         key = "User authentication use nft";
         author = "https://itgold.io/";
         support = _supportAddr;
-        hello = "Hello, i'm itgold nft authentication debot";
+        hello = _helloStr;
         language = "ru";
         dabi = m_debotAbi.get();
         icon = _icon;
@@ -322,6 +323,16 @@ contract NftAuthDebot is Debot {
     function setErrorStr(string errorStr) public onlyOwner {
         tvm.accept();
         _errorStr = errorStr;
+    }
+
+    function setDebotName(string debotName) public onlyOwner {
+        tvm.accept();
+        _debotName = debotName;
+    }
+
+    function setHelloStr(string helloStr) public onlyOwner {
+        tvm.accept();
+        _helloStr = helloStr;
     }
 
     function setOwnerPubkey(uint256 ownerPubkey) public onlyOwner {
