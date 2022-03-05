@@ -345,6 +345,22 @@
 			]
 		},
 		{
+			"name": "setDebotName",
+			"inputs": [
+				{"name":"debotName","type":"bytes"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setHelloStr",
+			"inputs": [
+				{"name":"helloStr","type":"bytes"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "setOwnerPubkey",
 			"inputs": [
 				{"name":"ownerPubkey","type":"uint256"}
