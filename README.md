@@ -20,7 +20,7 @@
 
 ### Запуск в surf браузер
 
-(link)[https://uri.ever.surf/debot/0:f294c209d72aee0170b4f3a1b90f6bc948421fc8813563a68c09d08bf21b67c9]
+[link](https://uri.ever.surf/debot/0:f294c209d72aee0170b4f3a1b90f6bc948421fc8813563a68c09d08bf21b67c9)
 
 Или отсканируйте QR через мобильное приложение
 
