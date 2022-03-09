@@ -24,4 +24,4 @@
 
 Или отсканируйте QR через мобильное приложение
 
-![Qr](_docs\surf-qr-code.gif)
+![Qr](_docs/surf-qr-code.gif)
